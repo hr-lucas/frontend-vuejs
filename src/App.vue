@@ -1,26 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <Header />
+  <main>
+    <UfCompoent v-if="!selectItem.uf" />
+    <CountyComponent v-else />
+  </main>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Header from "@/core/components/ToHeader.vue";
+import UfCompoent from "@/components/uf.vue";
+import CountyComponent from "@/components/County.vue";
+import { mapState } from "vuex";
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  components: { Header, UfCompoent, CountyComponent },
+  computed: {
+    ...mapState(["selectItem"]),
   },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+body,
+html {
+  background: rgb(232, 232, 232);
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+main {
+  padding: 20px;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 900px;
 }
 </style>
